@@ -1,0 +1,21 @@
+type: provider
+config:
+    provider_package: hmd_operators.trino
+    provider_class: TrinoOperator
+    params:
+        sql:|
+        create table if not exists {{ ns_context['schema_name'] }}.event (
+                "timestamp" timestamp, 
+                "type" varchar, 
+                "event_detail.code" int, 
+                "event_detail.message" varchar, 
+                "a" 
+            ) with (
+                external_location = '{{ ns_context['entity_path'] }}',
+                format = 'PARQUET'
+            ) 
+        trino_conn_id: trino_conn
+        autocommit: true
+    run_params:
+        schema_name: demo
+        entity_path: /path/to/entity
