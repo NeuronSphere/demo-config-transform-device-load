@@ -3,8 +3,9 @@ config:
     provider_package: hmd_operators.trino
     provider_class: TrinoOperator
     params:
-        sql:|
-        create table if not exists {{ ns_context['schema_name'] }}.telemetry (
+
+        sql: |
+            create table if not exists {{ ns_context['schema_name'] }}.telemetry (
                 "timestamp" timestamp, 
                 "type" varchar, 
                 "position.x" int, 
@@ -19,6 +20,8 @@ config:
             ) 
         trino_conn_id: trino_conn
         autocommit: true
+
     run_params:
+
         schema_name: demo
         entity_path: /path/to/entity

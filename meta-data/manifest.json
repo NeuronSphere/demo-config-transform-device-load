@@ -9,22 +9,20 @@
   },
   "generate": {
     "trino": {
+      "config": "demo-tmpl-transform-trino@0.1.9:project_template_set:trino_config.json",
       "contexts": [
         "ns:demo-notebooks-idl@0.1.4:configuration"
       ],
       "templates": [
-        "trino_load_transform"
+        "demo-tmpl-transform-trino/trino_load_transform"
       ],
       "variables": {
         "schema_name": "demo",
         "entity_path": "/path/to/entity",
-        "format": "PARQUET"
+        "format": "PARQUET",
+        "provider_package": "hmd_operators.trino",
+        "provider_class": "TrinoOperator"
       }
-    }
-  },
-  "templates": {
-    "trino_load_transform": {
-      "spec": "ns:demo-tmpl-transform-trino@0.1.4:project_template_set"
     }
   }
 }
