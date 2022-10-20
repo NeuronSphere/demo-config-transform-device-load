@@ -9,16 +9,14 @@ config:
                 "timestamp" timestamp, 
                 "type" varchar, 
                 "event_detail.code" int, 
-                "event_detail.message" varchar, 
-                "a" 
+                "event_detail.message" varchar
             ) with (
                 external_location = '{{ ns_context['entity_path'] }}',
-                format = 'PARQUET'
+                format = 'JSON'
             ) 
         trino_conn_id: trino_conn
         autocommit: true
-
     run_params:
 
         schema_name: demo
-        entity_path: /path/to/entity
+        entity_path: file:///hmd/data/raw/

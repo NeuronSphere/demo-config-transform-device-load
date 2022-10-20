@@ -11,17 +11,16 @@ config:
                 "position.x" int, 
                 "position.y" int, 
                 "position.z" int, 
-                "rotation.pitch" , 
-                "rotation.roll" , 
-                "rotation.yaw" 
+                "rotation.pitch" double, 
+                "rotation.roll" double, 
+                "rotation.yaw" double
             ) with (
                 external_location = '{{ ns_context['entity_path'] }}',
-                format = 'PARQUET'
+                format = 'JSON'
             ) 
         trino_conn_id: trino_conn
         autocommit: true
-
     run_params:
 
         schema_name: demo
-        entity_path: /path/to/entity
+        entity_path: file:///hmd/data/raw/

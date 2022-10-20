@@ -1,0 +1,25 @@
+type: provider
+config:
+    provider_package: hmd_operators.trino
+    provider_class: TrinoOperator
+    params:
+        sql: |
+              CREATE TABLE if not exists {{ ns_context['schema_name'] }}_source.telemetry_{{ ns_context['table_suffix'].replace('-', '_') }} (
+                      
+                  "position" ROW("x" int, "y" int, "z" int), 
+                  "rotation" ROW("pitch" double, "roll" double, "yaw" double), 
+                  "type" varchar, 
+                  "timestamp" timestamp, 
+                  "serial_number" varchar, 
+                  "case" varchar
+              )
+              WITH (
+                external_location = '{{ns_context['entity_path']}}',
+                format = 'JSON'
+              )
+        trino_conn_id: trino_conn_overwrite
+        autocommit: true
+    run_params:
+        schema_name: demo
+        table_suffix: "{source_path[1]}_{source_path[2]}_{source_path[3]}"
+        entity_path: entity.content_item_path

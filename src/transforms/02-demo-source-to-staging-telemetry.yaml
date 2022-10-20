@@ -1,0 +1,43 @@
+type: provider
+query_config:
+  query_name: by_transform_name_dependent_transform
+  query_value:
+    dep_tf_name: 01-demo-create-source-telemetry
+    tf_name: 02-demo-source-to-staging-telemetry
+config:
+    provider_package: hmd_operators.trino
+    provider_class: TrinoOperator
+    params:
+        sql: |
+
+
+              INSERT INTO {{ ns_context['schema_name'] }}_staging.telemetry (
+                  SELECT
+                    
+              position.x AS "position.x",
+              position.y AS "position.y",
+              position.z AS "position.z",
+              rotation.pitch AS "rotation.pitch",
+              rotation.roll AS "rotation.roll",
+              rotation.yaw AS "rotation.yaw",
+              "type" AS "type",
+              "timestamp" AS "timestamp",
+              "serial_number" AS "serial_number",
+              "case" AS "case",
+                    {{ ns_context["partition_values"]["iso_date"] }} AS "p_iso_date", 
+                    {{ ns_context["partition_values"]["serial_num"] }} AS "p_serial_num", 
+                    {{ ns_context["partition_values"]["dev_run"] }} AS "p_dev_run"
+                  FROM {{ ns_context['schema_name'] }}_source.telemetry_{{ ns_context['table_suffix'].replace('-', '_') }}
+                  {%- if 'source_where_clause' in ns_context %}
+                  WHERE {{ ns_context.source_where_clause }}
+                  {%- endif %}
+              )
+        trino_conn_id: trino_conn_overwrite
+        autocommit: true
+    run_params:
+        schema_name: demo
+        table_suffix: "{source_path[1]}_{source_path[2]}_{source_path[3]}"
+        partition_values:
+            iso_date: "'{source_path[1]}'"
+            serial_num: "'{source_path[2]}'"
+            dev_run: "'{source_path[3]}'"

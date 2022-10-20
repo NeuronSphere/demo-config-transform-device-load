@@ -1,0 +1,37 @@
+type: provider
+query_config:
+  query_name: by_transform_name_dependent_transform
+  query_value:
+    dep_tf_name: 01-demo-source-to-staging-event
+    tf_name: 02-demo-staging-to-final-event
+config:
+    provider_package: hmd_operators.trino
+    provider_class: TrinoOperator
+    params:
+        sql: |
+            INSERT INTO demo_final.event (
+              SELECT
+                "event_detail.code",
+                "event_detail.message",
+                "type",
+                "timestamp",
+                "serial_number",
+                "case",
+                "p_iso_date", 
+                "p_serial_num", 
+                "p_dev_run"
+              FROM demo_staging.event
+              WHERE
+                p_iso_date = {{ ns_context["partition_values"]["iso_date"] }} AND 
+                p_serial_num = {{ ns_context["partition_values"]["serial_num"] }} AND 
+                p_dev_run = {{ ns_context["partition_values"]["dev_run"] }}
+            )
+        trino_conn_id: trino_conn_overwrite
+        autocommit: true
+    run_params:
+        schema_name: demo
+        table_suffix: "{source_path[1]}_{source_path[2]}_{source_path[3]}"
+        partition_values:
+            iso_date: "'{source_path[1]}'"
+            serial_num: "'{source_path[2]}'"
+            dev_run: "'{source_path[3]}'"
