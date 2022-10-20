@@ -20,7 +20,8 @@
         "entity_path": "file:///hmd/data/raw/",
         "format": "JSON",
         "provider_package": "hmd_operators.trino",
-        "provider_class": "TrinoOperator"
+        "provider_class": "TrinoOperator",
+        "where_clause": "demo-config-transform-device-load/staging_to_final_where_clause.sql.j2"
       }
     }
   },
@@ -36,6 +37,7 @@
     }
   },
   "templates": [
+    "./src/mickey/templates",
     "ns:demo-tmpl-transform-trino@0.1.14:project_template_set",
     "ns:hmd-tmpl-transforms@0.1.5:project_template_set"
   ]

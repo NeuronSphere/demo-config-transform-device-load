@@ -24,9 +24,6 @@ config:
                     {{ ns_context["partition_values"]["serial_num"] }} AS "p_serial_num", 
                     {{ ns_context["partition_values"]["dev_run"] }} AS "p_dev_run"
                   FROM {{ ns_context['schema_name'] }}_source.event_{{ ns_context['table_suffix'].replace('-', '_') }}
-                  {%- if 'source_where_clause' in ns_context %}
-                  WHERE {{ ns_context.source_where_clause }}
-                  {%- endif %}
               )
         trino_conn_id: trino_conn_overwrite
         autocommit: true

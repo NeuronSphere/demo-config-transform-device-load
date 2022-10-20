@@ -29,6 +29,7 @@ config:
                 p_iso_date = {{ ns_context["partition_values"]["iso_date"] }} AND 
                 p_serial_num = {{ ns_context["partition_values"]["serial_num"] }} AND 
                 p_dev_run = {{ ns_context["partition_values"]["dev_run"] }}
+                AND (type = 'telemetry')
             )
         trino_conn_id: trino_conn_overwrite
         autocommit: true
