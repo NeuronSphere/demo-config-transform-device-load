@@ -11,8 +11,8 @@ config:
         sql: |
             INSERT INTO demo_final.event (
               SELECT
-                "event_detail.code",
-                "event_detail.message",
+                "event_detail_code",
+                "event_detail_message",
                 "type",
                 "timestamp",
                 "serial_number",

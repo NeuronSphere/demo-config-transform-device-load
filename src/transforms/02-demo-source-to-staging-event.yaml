@@ -14,8 +14,8 @@ config:
               INSERT INTO {{ ns_context['schema_name'] }}_staging.event (
                   SELECT
                     
-              detail.code AS "event_detail.code",
-              detail.message AS "event_detail.message",
+              detail.code AS "event_detail_code",
+              detail.message AS "event_detail_message",
               "type" AS "type",
               "timestamp" AS "timestamp",
               "serial_number" AS "serial_number",

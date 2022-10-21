@@ -14,12 +14,12 @@ config:
               INSERT INTO {{ ns_context['schema_name'] }}_staging.telemetry (
                   SELECT
                     
-              position.x AS "position.x",
-              position.y AS "position.y",
-              position.z AS "position.z",
-              rotation.pitch AS "rotation.pitch",
-              rotation.roll AS "rotation.roll",
-              rotation.yaw AS "rotation.yaw",
+              position.x AS "position_x",
+              position.y AS "position_y",
+              position.z AS "position_z",
+              rotation.pitch AS "rotation_pitch",
+              rotation.roll AS "rotation_roll",
+              rotation.yaw AS "rotation_yaw",
               "type" AS "type",
               "timestamp" AS "timestamp",
               "serial_number" AS "serial_number",

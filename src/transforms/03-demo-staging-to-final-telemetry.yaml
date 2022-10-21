@@ -11,12 +11,12 @@ config:
         sql: |
             INSERT INTO demo_final.telemetry (
               SELECT
-                "position.x",
-                "position.y",
-                "position.z",
-                "rotation.pitch",
-                "rotation.roll",
-                "rotation.yaw",
+                "position_x",
+                "position_y",
+                "position_z",
+                "rotation_pitch",
+                "rotation_roll",
+                "rotation_yaw",
                 "type",
                 "timestamp",
                 "serial_number",
