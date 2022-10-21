@@ -13,7 +13,7 @@
   "generate": {
     "trino_load": {
       "contexts": ["ref:tables"],
-      "templates": ["demo-tmpl-transform-trino/trino_load_transform"],
+      "templates": ["hmd-tmpl-transforms/trino_load_transform"],
       "variables": {
         "conn_name": "trino_conn_overwrite",
         "schema_name": "demo",
@@ -38,7 +38,6 @@
   },
   "templates": [
     "./src/mickey/templates",
-    "ns:demo-tmpl-transform-trino@0.1.16:project_template_set",
-    "ns:hmd-tmpl-transforms@0.1.5:project_template_set"
+    "ns:hmd-tmpl-transforms@0.1.6:project_template_set"
   ]
 }
