@@ -4,7 +4,7 @@ config:
     provider_class: TrinoOperator
     params:
         sql: |
-              CREATE TABLE if not exists {{ ns_context['schema_name'] }}_source.telemetry_{{ ns_context['table_suffix'].replace('-', '_') }} (
+              CREATE TABLE if not exists {{ ns_context['schema_name'] }}_source.telemetry_0_1_1_{{ ns_context['table_suffix'].replace('-', '_') }} (
                       
                   "position" ROW("x" int, "y" int, "z" int), 
                   "rotation" ROW("pitch" double, "roll" double, "yaw" double), 

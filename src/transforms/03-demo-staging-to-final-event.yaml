@@ -9,7 +9,7 @@ config:
     provider_class: TrinoOperator
     params:
         sql: |
-            INSERT INTO demo_final.event (
+            INSERT INTO demo_final.event_0_1_1 (
               SELECT
                 "event_detail_code",
                 "event_detail_message",
@@ -20,7 +20,7 @@ config:
                 "p_iso_date", 
                 "p_serial_num", 
                 "p_dev_run"
-              FROM demo_staging.event
+              FROM demo_staging.event_0_1_1
               WHERE
                 p_iso_date = {{ ns_context["partition_values"]["iso_date"] }} AND 
                 p_serial_num = {{ ns_context["partition_values"]["serial_num"] }} AND 

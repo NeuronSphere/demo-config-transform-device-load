@@ -9,7 +9,7 @@ config:
     provider_class: TrinoOperator
     params:
         sql: |
-            INSERT INTO demo_final.telemetry (
+            INSERT INTO demo_final.telemetry_0_1_1 (
               SELECT
                 "position_x",
                 "position_y",
@@ -24,7 +24,7 @@ config:
                 "p_iso_date", 
                 "p_serial_num", 
                 "p_dev_run"
-              FROM demo_staging.telemetry
+              FROM demo_staging.telemetry_0_1_1
               WHERE
                 p_iso_date = {{ ns_context["partition_values"]["iso_date"] }} AND 
                 p_serial_num = {{ ns_context["partition_values"]["serial_num"] }} AND 

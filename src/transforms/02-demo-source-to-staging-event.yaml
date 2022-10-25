@@ -11,7 +11,7 @@ config:
         sql: |
 
 
-              INSERT INTO {{ ns_context['schema_name'] }}_staging.event (
+              INSERT INTO {{ ns_context['schema_name'] }}_staging.event_0_1_1 (
                   SELECT
                     
               detail.code AS "event_detail_code",
@@ -23,7 +23,7 @@ config:
                     {{ ns_context["partition_values"]["iso_date"] }} AS "p_iso_date", 
                     {{ ns_context["partition_values"]["serial_num"] }} AS "p_serial_num", 
                     {{ ns_context["partition_values"]["dev_run"] }} AS "p_dev_run"
-                  FROM {{ ns_context['schema_name'] }}_source.event_{{ ns_context['table_suffix'].replace('-', '_') }}
+                  FROM {{ ns_context['schema_name'] }}_source.event_0_1_1_{{ ns_context['table_suffix'].replace('-', '_') }}
               )
         trino_conn_id: trino_conn_overwrite
         autocommit: true

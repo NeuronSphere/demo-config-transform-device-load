@@ -4,7 +4,7 @@ config:
     provider_class: TrinoOperator
     params:
         sql: |
-              CREATE TABLE if not exists {{ ns_context['schema_name'] }}_source.event_{{ ns_context['table_suffix'].replace('-', '_') }} (
+              CREATE TABLE if not exists {{ ns_context['schema_name'] }}_source.event_0_1_1_{{ ns_context['table_suffix'].replace('-', '_') }} (
                       
                   "detail" ROW("code" int, "message" varchar), 
                   "type" varchar, 
