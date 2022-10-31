@@ -2,8 +2,8 @@ type: provider
 query_config:
   query_name: by_transform_name_dependent_transform
   query_value:
-    dep_tf_name: 01-demo-source-to-staging-telemetry
-    tf_name: 02-demo-staging-to-final-telemetry
+    dep_tf_name: 02-demo-source-to-staging-telemetry
+    tf_name: 03-demo-staging-to-final-telemetry
 config:
     provider_package: hmd_operators.trino
     provider_class: TrinoOperator
