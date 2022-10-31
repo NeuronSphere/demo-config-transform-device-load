@@ -1,4 +1,9 @@
 type: provider
+query_config:
+    query_name: by_content_item_type_transform_name
+    query_value:
+        item_type: demo_json_log
+        tf_name: 01-demo-create-source-event
 config:
     provider_package: hmd_operators.trino
     provider_class: TrinoOperator
