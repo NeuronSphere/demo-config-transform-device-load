@@ -25,13 +25,13 @@ config:
               "serial_number" AS "serial_number",
               "case" AS "case",
                       
-                    cast({{ ns_context["partition_values"]["iso_date"] }} as DATE) AS "p_iso_date"
+                    cast(iso_date as DATE) AS "p_iso_date"
                       
                       
-                    {{ ns_context["partition_values"]["serial_num"] }} AS "p_serial_num", 
+                    serial_num AS "p_serial_num", 
                       
                       
-                    {{ ns_context["partition_values"]["dev_run"] }} AS "p_dev_run"
+                    dev_run AS "p_dev_run"
                       
                   FROM {{ ns_context['schema_name'] }}_source.telemetry_0_1_1_{{ ns_context['table_suffix'].replace('-', '_') }}
               )
