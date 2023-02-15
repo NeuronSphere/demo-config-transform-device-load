@@ -2,8 +2,8 @@ type: provider
 query_config:
   query_name: by_transform_name_dependent_transform
   query_value:
-    dep_tf_name: 02-demo-source-to-staging-telemetry
-    tf_name: 03-demo-staging-to-final-telemetry
+    dep_tf_name: 01-demo-source-to-staging-telemetry
+    tf_name: 02-demo-staging-to-final-telemetry
 config:
     provider_package: hmd_operators.trino
     provider_class: TrinoOperator
@@ -26,15 +26,9 @@ config:
                 "p_dev_run"
               FROM demo_staging.telemetry_0_1_1
               WHERE
-                  
-                p_iso_date = cast({{ ns_context["partition_values"]["iso_date"] }} as DATE) AND
-                  
-                  
+                p_iso_date = {{ ns_context["partition_values"]["iso_date"] }} AND 
                 p_serial_num = {{ ns_context["partition_values"]["serial_num"] }} AND 
-                  
-                  
                 p_dev_run = {{ ns_context["partition_values"]["dev_run"] }}
-                  
                 AND (type = 'telemetry')
             )
         trino_conn_id: trino_conn_overwrite

@@ -63,8 +63,7 @@
       ]
     }
   },
-  "templates": [
-    "./src/mickey/templates",
+  "external_templates": [
     "ns:hmd-tmpl-transforms@0.1.26:project_template_set"
   ]
 }

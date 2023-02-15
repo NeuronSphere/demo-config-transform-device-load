@@ -24,15 +24,9 @@ config:
               "timestamp" AS "timestamp",
               "serial_number" AS "serial_number",
               "case" AS "case",
-                      
-                    cast({{ ns_context["partition_values"]["iso_date"] }} as DATE) AS "p_iso_date",
-                      
-                      
+                    {{ ns_context["partition_values"]["iso_date"] }} AS "p_iso_date", 
                     {{ ns_context["partition_values"]["serial_num"] }} AS "p_serial_num", 
-                      
-                      
                     {{ ns_context["partition_values"]["dev_run"] }} AS "p_dev_run"
-                      
                   FROM {{ ns_context['schema_name'] }}_source.telemetry_0_1_1_{{ ns_context['table_suffix'].replace('-', '_') }}
               )
         trino_conn_id: trino_conn_overwrite
